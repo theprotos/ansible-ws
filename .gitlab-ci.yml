@@ -1,0 +1,29 @@
+before_script:
+  - echo "no before script"
+
+variables:
+  var: "myVar"
+
+stages:
+  - build
+
+build:develop:
+  stage: build
+  script:
+    - ls -al public
+  artifacts:
+    paths:
+      - public
+  except:
+    - master
+
+build:prod:
+  stage: build
+  script:
+  - ls -al public
+  artifacts:
+    paths:
+    - public
+  only:
+    - master
+

@@ -1,0 +1,5 @@
+- name: locals
+  hosts: localhost
+  tasks:
+  - debug: msg="Some message"
+  - shell: echo 'test from ansible'
