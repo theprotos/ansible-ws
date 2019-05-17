@@ -10,20 +10,14 @@ stages:
 build:develop:
   stage: build
   script:
-    - ls -al public
-  artifacts:
-    paths:
-      - public
+    - ls -al
   except:
     - master
 
 build:prod:
   stage: build
   script:
-  - ls -al public
-  artifacts:
-    paths:
-    - public
+  - ls -al
   only:
     - master
 
