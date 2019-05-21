@@ -1,7 +1,9 @@
 #!/bin/sh
 
+echo master > /etc/hostname
+
 apk update --no-cache
-apk add --no-cache openssh python2 python3 ansible
+apk add --no-cache openssh python2 python3 ansible sshpass
 apk upgrade musl
 
 mkdir /etc/ansible/

@@ -1,0 +1,8 @@
+- hosts: nodes
+  tasks:
+  - name: webserver
+    package: name=httpd
+    become: yes
+  - name: start nginx
+    systemd: name=httpd state=started
+    become: yes
