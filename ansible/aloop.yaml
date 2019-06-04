@@ -1,0 +1,21 @@
+---
+- hosts: all
+  become: true
+
+  vars:
+    common_directories:
+      - ".ssh"
+      - "loops"
+
+  tasks:
+    - name: create dirs
+      file:
+        name: "{{ item }}"
+        state: directory
+      loop:
+        - /temp/1
+        - /temp/2
+        - /temp/3
+        - /temp/4
+        - /temp/5
+        - /temp/6

@@ -4,11 +4,12 @@
 VAGRANTFILE_API_VERSION = "2"
 
 cluster = {
-  "master" => { :ip => "192.168.101.10", :cpus => 1, :mem => 512, :os => "centos/7", :script => "ansible-server-centos.sh" },
-  "slave1" => { :ip => "192.168.101.11", :cpus => 1, :mem => 512, :os => "centos/7", :script => "ansible-node.sh"},
-  "slave2" => { :ip => "192.168.101.12", :cpus => 1, :mem => 512, :os => "ubuntu/bionic64", :script => "ansible-node.sh"},
-  "slave3" => { :ip => "192.168.101.13", :cpus => 1, :mem => 512, :os => "centos/7", :script => "ansible-node.sh"},
-  "slave4" => { :ip => "192.168.101.14", :cpus => 1, :mem => 512, :os => "ubuntu/bionic64", :script => "ansible-node.sh"},
+  "master" => { :ip => "192.168.101.10", :cpus => 1, :mem => 512, :os => "centos/7", :script => "bootstrap/ansible-server-centos.sh" },
+  "slave1" => { :ip => "192.168.101.11", :cpus => 1, :mem => 512, :os => "centos/7", :script => "bootstrap/ansible-node.sh"},
+  "slave2" => { :ip => "192.168.101.12", :cpus => 1, :mem => 512, :os => "centos/7", :script => "bootstrap/ansible-node.sh"},
+  "slave3" => { :ip => "192.168.101.13", :cpus => 1, :mem => 512, :os => "centos/7", :script => "bootstrap/ansible-node.sh"},
+  "slave4" => { :ip => "192.168.101.14", :cpus => 1, :mem => 512, :os => "centos/7", :script => "bootstrap/ansible-node.sh"},
+  "slave5" => { :ip => "192.168.101.15", :cpus => 1, :mem => 512, :os => "centos/7", :script => "bootstrap/ansible-node.sh"},
 }
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
@@ -18,7 +19,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         #config.vm.box = "alpine/alpine64"
         override.vm.box = "#{info[:os]}"
         override.vm.network "private_network", ip: "#{info[:ip]}"
-        config.vm.synced_folder "ansible", "/vagrant"
+        config.vm.synced_folder "ansible", "/vagrant", type: "rsync"
         #override.vm.cpus = "#{info[:cpus]}"
         vb.gui = false
         vb.customize ["modifyvm", :id, "--memory", info[:mem], "--cpus", info[:cpus], "--hwvirtex", "on", "--cpuexecutioncap", "50"]

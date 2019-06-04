@@ -1,6 +1,8 @@
 #!/bin/sh
 
 echo master > /etc/hostname
+echo 'ANSIBLE_HOST_KEY_CHECKING=False' >> /etc/environment
+echo 'ANSIBLE_HOST_KEY_CHECKING=False' >> /etc/profile.d/ansible.sh
 
 yum update
 yum install -y openssh python2 python3 ansible sshpass
